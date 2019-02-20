@@ -4,9 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  entry: {
-    "example": ["./src/main/js/boot.js"]
-  },
   module: {
 
     rules: [{
@@ -28,10 +25,13 @@ module.exports = {
         }
       ]
     }, {
-      test: /\.(png|svg|jpg|gif)$/,
-      use: [
-        'file-loader'
-      ]
+      test: /\.(png|svg|jpg|gif|ico)$/,
+      use: [{
+        loader: 'file-loader',
+        options: {
+          context: path.resolve(__dirname, 'src', 'main', 'assets')
+        }
+      } ]
     } ]
   },
   plugins: [
@@ -41,8 +41,8 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      "target": path.resolve(__dirname, "target"),
-      "src": path.resolve(__dirname, "src")
+      "target": path.resolve(__dirname, 'target'),
+      "src": path.resolve(__dirname, 'src')
     }
   }
 };

@@ -2,7 +2,7 @@ import org.scalajs.core.tools.linker.backend.OutputMode
 import sbtcrossproject.CrossPlugin.autoImport.crossProject
 
 val sharedSettings = Seq(
-  organization := "com.github.nechaevv.isomorphic",
+  organization := "com.github.paniov.biread",
   version := "0.1-SNAPSHOT",
   scalaVersion := "2.12.8"
 )
