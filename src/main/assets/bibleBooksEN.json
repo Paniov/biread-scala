@@ -1,0 +1,530 @@
+[
+    {
+        "title": "Genesis",
+        "chapters": 50,
+        "topic": "",
+        "summary": "",
+        "group": "Pentateuch",
+        "testament": "Old"
+    },
+    {
+        "title": "Exodus",
+        "chapters": 40,
+        "topic": "",
+        "summary": "",
+        "group": "Pentateuch",
+        "testament": "Old"
+    },
+    {
+        "title": "Leviticus",
+        "chapters": 27,
+        "topic": "",
+        "summary": "",
+        "group": "Pentateuch",
+        "testament": "Old"
+    },
+    {
+        "title": "Numbers",
+        "chapters": 36,
+        "topic": "",
+        "summary": "",
+        "group": "Pentateuch",
+        "testament": "Old"
+    },
+    {
+        "title": "Deuteronomy",
+        "chapters": 34,
+        "topic": "",
+        "summary": "",
+        "group": "Pentateuch",
+        "testament": "Old"
+    },
+    {
+        "title": "Joshua",
+        "chapters": 24,
+        "topic": "",
+        "summary": "",
+        "group": "Pentateuch",
+        "testament": "Old"
+    },
+    {
+        "title": "Judges",
+        "chapters": 21,
+        "topic": "",
+        "summary": "",
+        "group": "Historical",
+        "testament": "Old"
+    },
+    {
+        "title": "Ruth",
+        "chapters": 4,
+        "topic": "",
+        "summary": "",
+        "group": "Historical",
+        "testament": "Old"
+    },
+    {
+        "title": "1 Samuel",
+        "chapters": 31,
+        "topic": "",
+        "summary": "",
+        "group": "Historical",
+        "testament": "Old"
+    },
+    {
+        "title": "2 Samuel",
+        "chapters": 24,
+        "topic": "",
+        "summary": "",
+        "group": "Historical",
+        "testament": "Old"
+    },
+    {
+        "title": "1 Kings",
+        "chapters": 22,
+        "topic": "",
+        "summary": "",
+        "group": "Historical",
+        "testament": "Old"
+    },
+    {
+        "title": "2 Kings",
+        "chapters": 25,
+        "topic": "",
+        "summary": "",
+        "group": "Historical",
+        "testament": "Old"
+    },
+    {
+        "title": "1 Chronicles",
+        "chapters": 29,
+        "topic": "",
+        "summary": "",
+        "group": "Historical",
+        "testament": "Old"
+    },
+    {
+        "title": "2 Chronicles",
+        "chapters": 36,
+        "topic": "",
+        "summary": "",
+        "group": "Historical",
+        "testament": "Old"
+    },
+    {
+        "title": "Ezra",
+        "chapters": 10,
+        "topic": "",
+        "summary": "",
+        "group": "Historical",
+        "testament": "Old"
+    },
+    {
+        "title": "Nehemiah",
+        "chapters": 13,
+        "topic": "",
+        "summary": "",
+        "group": "Historical",
+        "testament": "Old"
+    },
+    {
+        "title": "Esther",
+        "chapters": 10,
+        "topic": "",
+        "summary": "",
+        "group": "Historical",
+        "testament": "Old"
+    },
+    {
+        "title": "Job",
+        "chapters": 42,
+        "topic": "",
+        "summary": "",
+        "group": "Poetic",
+        "testament": "Old"
+    },
+    {
+        "title": "Psalm",
+        "chapters": 150,
+        "topic": "",
+        "summary": "",
+        "group": "Poetic",
+        "testament": "Old"
+    },
+    {
+        "title": "Proverbs",
+        "chapters": 31,
+        "topic": "",
+        "summary": "",
+        "group": "Poetic",
+        "testament": "Old"
+    },
+    {
+        "title": "Ecclesiastes",
+        "chapters": 12,
+        "topic": "",
+        "summary": "",
+        "group": "Poetic",
+        "testament": "Old"
+    },
+    {
+        "title": "Song of Songs",
+        "chapters": 8,
+        "topic": "",
+        "summary": "",
+        "group": "Poetic",
+        "testament": "Old"
+    },
+    {
+        "title": "Isaiah",
+        "chapters": 66,
+        "topic": "",
+        "summary": "",
+        "group": "Major Prophets",
+        "testament": "Old"
+    },
+    {
+        "title": "Jeremiah",
+        "chapters": 52,
+        "topic": "",
+        "summary": "",
+        "group": "Major Prophets",
+        "testament": "Old"
+    },
+    {
+        "title": "Lamentations",
+        "chapters": 5,
+        "topic": "",
+        "summary": "",
+        "group": "Major Prophets",
+        "testament": "Old"
+    },
+    {
+        "title": "Ezekiel",
+        "chapters": 48,
+        "topic": "",
+        "summary": "",
+        "group": "Major Prophets",
+        "testament": "Old"
+    },
+    {
+        "title": "Daniel",
+        "chapters": 12,
+        "topic": "",
+        "summary": "",
+        "group": "Major Prophets",
+        "testament": "Old"
+    },
+    {
+        "title": "Hosea",
+        "chapters": 14,
+        "topic": "",
+        "summary": "",
+        "group": "Minor Prophets",
+        "testament": "Old"
+    },
+    {
+        "title": "Joel",
+        "chapters": 3,
+        "topic": "",
+        "summary": "",
+        "group": "Minor Prophets",
+        "testament": "Old"
+    },
+    {
+        "title": "Amos",
+        "chapters": 9,
+        "topic": "",
+        "summary": "",
+        "group": "Minor Prophets",
+        "testament": "Old"
+    },
+    {
+        "title": "Obadiah",
+        "chapters": 1,
+        "topic": "",
+        "summary": "",
+        "group": "Minor Prophets",
+        "testament": "Old"
+    },
+    {
+        "title": "Jonah",
+        "chapters": 4,
+        "topic": "",
+        "summary": "",
+        "group": "Minor Prophets",
+        "testament": "Old"
+    },
+    {
+        "title": "Micah",
+        "chapters": 7,
+        "topic": "",
+        "summary": "",
+        "group": "Minor Prophets",
+        "testament": "Old"
+    },
+    {
+        "title": "Nahum",
+        "chapters": 3,
+        "topic": "",
+        "summary": "",
+        "group": "Minor Prophets",
+        "testament": "Old"
+    },
+    {
+        "title": "Habakkuk",
+        "chapters": 3,
+        "topic": "",
+        "summary": "",
+        "group": "Minor Prophets",
+        "testament": "Old"
+    },
+    {
+        "title": "Zephaniah",
+        "chapters": 3,
+        "topic": "",
+        "summary": "",
+        "group": "Minor Prophets",
+        "testament": "Old"
+    },
+    {
+        "title": "Haggai",
+        "chapters": 2,
+        "topic": "",
+        "summary": "",
+        "group": "Minor Prophets",
+        "testament": "Old"
+    },
+    {
+        "title": "Zechariah",
+        "chapters": 14,
+        "topic": "",
+        "summary": "",
+        "group": "Minor Prophets",
+        "testament": "Old"
+    },
+    {
+        "title": "Malachi",
+        "chapters": 4,
+        "topic": "",
+        "summary": "",
+        "group": "Minor Prophets",
+        "testament": "Old"
+    },
+    {
+        "title": "Matthew",
+        "chapters": 28,
+        "topic": "",
+        "summary": "",
+        "group": "Gospel",
+        "testament": "New"
+    },
+    {
+        "title": "Mark",
+        "chapters": 16,
+        "topic": "",
+        "summary": "",
+        "group": "Gospel",
+        "testament": "New"
+    },
+    {
+        "title": "Luke",
+        "chapters": 24,
+        "topic": "",
+        "summary": "",
+        "group": "Gospel",
+        "testament": "New"
+    },
+    {
+        "title": "John",
+        "chapters": 21,
+        "topic": "",
+        "summary": "",
+        "group": "Gospel",
+        "testament": "New"
+    },
+    {
+        "title": "Acts",
+        "chapters": 28,
+        "topic": "",
+        "summary": "",
+        "group": "Historical",
+        "testament": "New"
+    },
+    {
+        "title": "Romans",
+        "chapters": 16,
+        "topic": "",
+        "summary": "",
+        "group": "Epistles of Paul",
+        "testament": "New"
+    },
+    {
+        "title": "1 Corinthians",
+        "chapters": 16,
+        "topic": "",
+        "summary": "",
+        "group": "Epistles of Paul",
+        "testament": "New"
+    },
+    {
+        "title": "2 Corinthians",
+        "chapters": 13,
+        "topic": "",
+        "summary": "",
+        "group": "Epistles of Paul",
+        "testament": "New"
+    },
+    {
+        "title": "Galatians",
+        "chapters": 6,
+        "topic": "",
+        "summary": "",
+        "group": "Epistles of Paul",
+        "testament": "New"
+    },
+    {
+        "title": "Ephesians",
+        "chapters": 6,
+        "topic": "",
+        "summary": "",
+        "group": "Epistles of Paul",
+        "testament": "New"
+    },
+    {
+        "title": "Philippians",
+        "chapters": 4,
+        "topic": "",
+        "summary": "",
+        "group": "Epistles of Paul",
+        "testament": "New"
+    },
+    {
+        "title": "Colossians",
+        "chapters": 4,
+        "topic": "",
+        "summary": "",
+        "group": "Epistles of Paul",
+        "testament": "New"
+    },
+    {
+        "title": "1 Thessalonians",
+        "chapters": 5,
+        "topic": "",
+        "summary": "",
+        "group": "Epistles of Paul",
+        "testament": "New"
+    },
+    {
+        "title": "2 Thessalonians",
+        "chapters": 3,
+        "topic": "",
+        "summary": "",
+        "group": "Epistles of Paul",
+        "testament": "New"
+    },
+    {
+        "title": "1 Timothy",
+        "chapters": 6,
+        "topic": "",
+        "summary": "",
+        "group": "Epistles of Paul",
+        "testament": "New"
+    },
+    {
+        "title": "2 Timothy",
+        "chapters": 4,
+        "topic": "",
+        "summary": "",
+        "group": "Epistles of Paul",
+        "testament": "New"
+    },
+    {
+        "title": "Titus",
+        "chapters": 3,
+        "topic": "",
+        "summary": "",
+        "group": "Epistles of Paul",
+        "testament": "New"
+    },
+    {
+        "title": "Philemon",
+        "chapters": 1,
+        "topic": "",
+        "summary": "",
+        "group": "Epistles of Paul",
+        "testament": "New"
+    },
+    {
+        "title": "Hebrews",
+        "chapters": 13,
+        "topic": "",
+        "summary": "",
+        "group": "Epistles of Paul",
+        "testament": "New"
+    },
+    {
+        "title": "James",
+        "chapters": 5,
+        "topic": "",
+        "summary": "",
+        "group": "Epistles",
+        "testament": "New"
+    },
+    {
+        "title": "1 Peter",
+        "chapters": 5,
+        "topic": "",
+        "summary": "",
+        "group": "Epistles",
+        "testament": "New"
+    },
+    {
+        "title": "2 Peter",
+        "chapters": 3,
+        "topic": "",
+        "summary": "",
+        "group": "Epistles",
+        "testament": "New"
+    },
+    {
+        "title": "1 John",
+        "chapters": 5,
+        "topic": "",
+        "summary": "",
+        "group": "Epistles",
+        "testament": "New"
+    },
+    {
+        "title": "2 John",
+        "chapters": 1,
+        "topic": "",
+        "summary": "",
+        "group": "Epistles",
+        "testament": "New"
+    },
+    {
+        "title": "3 John",
+        "chapters": 1,
+        "topic": "",
+        "summary": "",
+        "group": "Epistles",
+        "testament": "New"
+    },
+    {
+        "title": "Jude",
+        "chapters": 1,
+        "topic": "",
+        "summary": "",
+        "group": "Epistles",
+        "testament": "New"
+    },
+    {
+        "title": "Revelation",
+        "chapters": 11,
+        "topic": "",
+        "summary": "",
+        "group": "Prophetic",
+        "testament": "New"
+    }
+]
