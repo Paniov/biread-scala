@@ -1,13 +1,20 @@
 package com.github.paniov.biread.app.components
 
-import com.github.nechaevv.isomorphic.vdom.tags.{div, h3}
-import com.github.nechaevv.isomorphic.vdom.{Component, ElementVNode, classes}
 import com.github.paniov.biread.app.model.BireadAppState
+import com.github.paniov.biread.app.NavigateBack
+import com.github.nechaevv.isomorphic.vdom.browser._
+import com.github.nechaevv.isomorphic.vdom.tags._
+import com.github.nechaevv.isomorphic.vdom._
 
 object ContactsComponent extends Component[BireadAppState, ElementVNode] {
 
   override def apply(state: BireadAppState): ElementVNode = div(classes += "contacts",
     h3("Contacts"),
-    div(classes += "grid grid-pad")
+    div(classes += "content",
+      p("It is a Contacts page of BiRead app")),
+    button(DOMEventTypes.Click → backEventHandler, "go back"),
   )
+
+  val backEventHandler: EventHandler = e ⇒ fs2.Stream(NavigateBack)
+
 }
