@@ -25,6 +25,9 @@ libraryDependencies ++= Seq(
   "com.github.julien-truffaut" %%%  "monocle-law"   % monocleVersion % "test",
   "io.circe" %%% "circe-generic" % circeVersion,
   "org.json4s" %% "json4s-jackson" % json4sVersion,
+  "org.scalactic" %% "scalactic" % "3.0.5",
+  "org.scalatest" %% "scalatest" % "3.0.5" % "test"
+
 )
 
 scalacOptions ++= Seq("-P:scalajs:sjsDefinedByDefault", "-feature", "-deprecation")
@@ -37,3 +40,5 @@ scalaJSModuleKind := ModuleKind.CommonJSModule
 
 scalaJSLinkerConfig := scalaJSLinkerConfig.value.withRelativizeSourceMapBase(
   Some((artifactPath in (Compile, fastOptJS)).value.toURI))
+
+logBuffered in Test := false

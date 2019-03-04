@@ -117,7 +117,7 @@ package object app {
 //    case e: IOException => e.printStackTrace
 //  }
 
-  println(s"bibleJSON=$bibleJSON")
+//  println(s"bibleJSON=$bibleJSON")
 
 }
 
