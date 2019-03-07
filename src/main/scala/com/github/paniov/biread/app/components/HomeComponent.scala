@@ -18,19 +18,19 @@ import org.json4s.jackson.Serialization.write
 object HomeComponent extends Component[BireadAppState, ElementVNode] {
 
   //  val foo = bibleJSON.toString
-//  implicit val formats = DefaultFormats
-//
-//  val bibleJSON = write(bible)
-//  println(bible)
-//  val bibleJson = bible.asJson
-//  println(bibleJson)
+  //  implicit val formats = DefaultFormats
+  //
+  //  val bibleJSON = write(bible)
+  //  println(bible)
+  //  val bibleJson = bible.asJson
+  //  println(bibleJson)
 
-//  val b: String = bibleJSON.toString()
+  //  val b: String = bibleJSON.toString()
 
   override def apply(state: BireadAppState): ElementVNode = div(classes += "home",
     h3("BiRead app"),
     div(classes += "content",
-//      p("It is a Home page of BiRead app"),
+      //      p("It is a Home page of BiRead app"),
       p(bibleJSON.toString)
     ),
     button(DOMEventTypes.Click → backEventHandler, "go back"),

@@ -7,9 +7,9 @@ import monocle.macros.Lenses
 case class BireadAppState
 (
   route: Route,
-//  heroes: Seq[Hero],
-//  detail: Option[HeroDetailState],
-//  search: HeroSearchState,
-//  newHeroName: String,
-//  messages: Seq[String]
+  //  heroes: Seq[Hero],
+  //  detail: Option[HeroDetailState],
+  //  search: HeroSearchState,
+  //  newHeroName: String,
+  //  messages: Seq[String]
 )

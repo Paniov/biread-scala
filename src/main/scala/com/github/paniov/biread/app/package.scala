@@ -82,15 +82,15 @@ package object app {
   val James = "James"
   val Peter1 = "1 Peter"
   val Peter2 = "2 Peter"
-  val John1 =  "1 John"
+  val John1 = "1 John"
   val John2 = "2 John"
   val John3 = "3 John"
   val Jude = "Jude"
   val Revelation = "Revelation"
 
   val genesisChapters: Seq[Chapter] = Seq(
-    Chapter(1, 31, Seq(1,6,9,14,20,24,26), "The Creation"),
-    Chapter(2, 25, Seq(1,4,10,15,18), "The Creation of Man and Woman")
+    Chapter(1, 31, Seq(1, 6, 9, 14, 20, 24, 26), "The Creation"),
+    Chapter(2, 25, Seq(1, 4, 10, 15, 18), "The Creation of Man and Woman")
   )
 
   val genesisBook = Book(Genesis, Pentateuch, Old, genesisChapters)
@@ -100,24 +100,22 @@ package object app {
   )
 
 
-
-
   val bible: Bible = Bible(Testament(Old, oldTestamentBooks), Testament(New, oldTestamentBooks))
 
   val bibleJSON = bible.asJson
 
   val assetsPath = "./"
 
-//  val w: Writer = new FileWriter(assetsPath + "bibleEn" + ".json")
-//  w.close()
-//  try {
-//    w.write(bibleJSON.toString)
-//    w.close
-//  } catch {
-//    case e: IOException => e.printStackTrace
-//  }
+  //  val w: Writer = new FileWriter(assetsPath + "bibleEn" + ".json")
+  //  w.close()
+  //  try {
+  //    w.write(bibleJSON.toString)
+  //    w.close
+  //  } catch {
+  //    case e: IOException => e.printStackTrace
+  //  }
 
-//  println(s"bibleJSON=$bibleJSON")
+  //  println(s"bibleJSON=$bibleJSON")
 
 }
 

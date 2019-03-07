@@ -6,5 +6,5 @@ object AppRoutes {
   val homeRoute: Regex = "^/home$".r
   val howtoRoute: Regex = "^/howto$".r
   val contactsRoute: Regex = "^/contacts$".r
-//  val detailRoute: Regex = "^/detail/([0-9]+)$".r
+  //  val detailRoute: Regex = "^/detail/([0-9]+)$".r
 }

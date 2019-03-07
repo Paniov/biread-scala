@@ -7,8 +7,8 @@ import monocle.macros.Lenses
 //@Lenses
 case class Chapter
 (
-  chapter:  Int,
-  verses:   Int,
-  parts:    Seq[Int],
-  summary:  String
+  chapter: Int,
+  verses: Int,
+  parts: Seq[Int],
+  summary: String
 )
