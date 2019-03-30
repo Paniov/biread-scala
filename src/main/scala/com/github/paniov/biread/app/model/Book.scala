@@ -10,5 +10,12 @@ case class Book
   title: String,
   group: String,
   testament: String,
-  chapters: Seq[Chapter]
+  chapters: Seq[Chapter],
+  orders: Map[String, Int]
 )
+
+//{
+//
+//  def getOrder(x: String): Int = this.orders(x)
+//
+//}

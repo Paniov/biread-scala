@@ -1,13 +1,12 @@
 package com.github.paniov.biread
 
+import com.github.paniov.biread.app.books.NewTestamentBooks._
 import io.circe.Json
 import io.circe.syntax._
-import io.circe.generic.auto._
 import com.github.paniov.biread.app.model.{Bible, Book, Chapter, Testament}
 
 package object app {
 
-  val New = "new"
   val Old = "old"
 
   val Pentateuch = "Pentateuch"
@@ -15,10 +14,6 @@ package object app {
   val Poetical = "Poetical"
   val MajorProphets = "Major Prophets"
   val MinorProphets = "Minor Prophets"
-  val Gospel = "Gospel"
-  val EpistlesOfPaul = "Epistles of Paul"
-  val Epistles = "Epistles"
-  val Prophetical = "Prophetical"
 
   val Genesis = "Genesis"
   val Exodus = "Exodus"
@@ -60,47 +55,20 @@ package object app {
   val Zechariah = "Zechariah"
   val Malachi = "Malachi"
 
-  val Matthew = "Matthew"
-  val Mark = "Mark"
-  val Luke = "Luke"
-  val John = "John"
-  val Acts = "Acts"
-  val Romans = "Romans"
-  val Corinthians1 = "1 Corinthians"
-  val Corinthians2 = "2 Corinthians"
-  val Galatians = "Galatians"
-  val Ephesians = "Ephesians"
-  val Philippians = "Philippians"
-  val Colossians = "Colossians"
-  val Thessalonians1 = "1 Thessalonians"
-  val Thessalonians2 = "2 Thessalonians"
-  val Timothy1 = "1 Timothy"
-  val Timothy2 = "2 Timothy "
-  val Titus = "Titus"
-  val Philemon = "Philemon"
-  val Hebrews = "Hebrews"
-  val James = "James"
-  val Peter1 = "1 Peter"
-  val Peter2 = "2 Peter"
-  val John1 = "1 John"
-  val John2 = "2 John"
-  val John3 = "3 John"
-  val Jude = "Jude"
-  val Revelation = "Revelation"
-
   val genesisChapters: Seq[Chapter] = Seq(
     Chapter(1, 31, Seq(1, 6, 9, 14, 20, 24, 26), "The Creation"),
     Chapter(2, 25, Seq(1, 4, 10, 15, 18), "The Creation of Man and Woman")
   )
 
-  val genesisBook = Book(Genesis, Pentateuch, Old, genesisChapters)
+  val genesisBook = Book(Genesis, Pentateuch, Old, genesisChapters, Map("en" → 1, "ru" → 1))
 
   val oldTestamentBooks: Seq[Book] = Seq(
     genesisBook
   )
 
+  val newTestamentBooks = booksEN //booksRU
 
-  val bible: Bible = Bible(Testament(Old, oldTestamentBooks), Testament(New, oldTestamentBooks))
+  val bible: Bible = Bible(Testament(Old, oldTestamentBooks), Testament(New, newTestamentBooks))
 
   val bibleJSON = bible.asJson
 

@@ -3,14 +3,13 @@ package com.github.paniov.biread.test
 import com.github.paniov.biread.app.books.NewTestamentBooks._
 import com.github.paniov.biread.app.model.Book
 
-import scala.collection.{SortedSet, mutable}
+import scala.collection.{SortedSet}
 import scala.language.postfixOps
 
 class BooksSpec extends UnitSpec {
 
   type BookMap = Map[Int, Int]
   type TupleInt = (Int, Int)
-
 
   def addOne: Int ⇒ Int = (1 + _)
 
@@ -35,6 +34,44 @@ class BooksSpec extends UnitSpec {
   def mapsPartsEq(x: Map[Int, Seq[Int]], y: Map[Int, Seq[Int]]): Boolean = mapsDiff(x, y) && mapsDiff(y, x)
 
   def mapKeysToSortedList: BookMap ⇒ List[Int] = SortedSet.empty[Int] ++ _.keys toList
+
+  val booksEN = ntBooks.sortBy(x ⇒ x.orders("en"))
+  val booksRU = ntBooks.sortBy(x ⇒ x.orders("ru"))
+
+  "Books of EN and RU versions" should "differ in its order" in {
+    assert(booksEN !== booksRU)
+  }
+
+  "Books of EN version" should "be of size 27" in {
+    val size = booksEN.size
+    assert(size == 27, "Actual size of books was " + size + " instead of 27")
+  }
+
+  it should "have book of Romans on index 5" in {
+    assert(booksEN.indexWhere(x ⇒ x.title == "Romans") == 5)
+  }
+
+  it should "have book of James on index 19" in {
+    assert(booksEN.indexWhere(x ⇒ x.title == "James") == 19)
+  }
+
+
+  "Books of RU version" should "be of size 27" in {
+    val size = booksRU.size
+    assert(size == 27, "Actual size of books was " + size + " instead of 27")
+  }
+
+  it should "have book of Romans on index 12" in {
+    assert(booksRU.indexWhere(x ⇒ x.title == "Romans") == 12)
+  }
+
+  it should "have book of James on index 5" in {
+    assert(booksRU.indexWhere(x ⇒ x.title == "James") == 5)
+  }
+
+  it should "have a consecutive ascending order of chapters from 1 to 28" in {
+    assert(mapKeysToSortedList(actualMatt) === (1 to 28 toList))
+  }
 
   val versesMatt = Seq(25, 23, 17, 25, 48, 34, 29, 34, 38, 42, 30, 50, 58, 36, 39, 28, 27, 35, 30, 34, 46, 46, 39, 51, 46, 75, 66, 20)
   val actualMatt = mapActualVerses(ntMatthew)
