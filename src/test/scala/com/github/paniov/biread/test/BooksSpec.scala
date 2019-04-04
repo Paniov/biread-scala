@@ -1,9 +1,9 @@
 package com.github.paniov.biread.test
 
 import com.github.paniov.biread.app.books.NewTestamentBooks._
-import com.github.paniov.biread.app.model.Book
+import com.github.paniov.biread.app.model.{Book, Quote, Verses}
 
-import scala.collection.{SortedSet}
+import scala.collection.SortedSet
 import scala.language.postfixOps
 
 class BooksSpec extends UnitSpec {
@@ -34,6 +34,38 @@ class BooksSpec extends UnitSpec {
   def mapsPartsEq(x: Map[Int, Seq[Int]], y: Map[Int, Seq[Int]]): Boolean = mapsDiff(x, y) && mapsDiff(y, x)
 
   def mapKeysToSortedList: BookMap ⇒ List[Int] = SortedSet.empty[Int] ++ _.keys toList
+
+  def expandRange(last: Int, xs: List[Int]): List[Int] = 1 :: xs.foldRight(List(last)) { (i, acc) ⇒ (i-1) :: i :: acc }
+////    acc
+//  }
+//  def addLast(last: Int): Seq[Int] ⇒
+
+//  def getQuote(book: Book): Seq[Quote] = {
+//    val quotes = book.chapters.foldLeft(Seq.empty[Quote]) {
+//      (acc, chapter) ⇒ {
+//
+//        if (chapter.parts.size == 0) {
+//          acc :+ Quote(book.title, chapter.chapter, null)
+//        } else {
+//          //          val allParts = List(1) ++ chapter.parts ++ List(chapter.verses)
+//          //          val partsToPairs = allParts
+//          val booksFromParts = chapter.parts.foldLeft(1) {
+//            (partPrevious, partCurrent) ⇒ {
+//              val start = partPrevious
+//              val end = partCurrent - 1
+//              acc :+ Quote(book.title, chapter.chapter, Option(Verses(start, end)))
+//              partCurrent
+//            }
+//          }
+//
+//          return acc
+//
+//        }
+//      }
+//    }
+//    return quotes
+//  }
+
 
   val booksEN = ntBooks.sortBy(x ⇒ x.orders("en"))
   val booksRU = ntBooks.sortBy(x ⇒ x.orders("ru"))
@@ -114,6 +146,12 @@ class BooksSpec extends UnitSpec {
   it should "have a correct set of parts" in {
     assert(mapsPartsEq(expectedPartsMatt, actualPartsMatt))
   }
+
+  it should "be divided by 20 daily quotes" in {
+    val quotes = getQuote(ntMatthew)
+    assert(quotes.size == 20)
+  }
+
 
   val versesMark = Seq(45, 28, 35, 41, 43, 56, 37, 38, 50, 52, 33, 44, 37, 72, 47, 20)
   val expectedMark = mapExpectedVerses(versesMark)
