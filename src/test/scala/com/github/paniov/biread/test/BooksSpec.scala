@@ -35,37 +35,23 @@ class BooksSpec extends UnitSpec {
 
   def mapKeysToSortedList: BookMap ⇒ List[Int] = SortedSet.empty[Int] ++ _.keys toList
 
-  def expandRange(last: Int, xs: List[Int]): List[Int] = 1 :: xs.foldRight(List(last)) { (i, acc) ⇒ (i-1) :: i :: acc }
-////    acc
-//  }
-//  def addLast(last: Int): Seq[Int] ⇒
+  def expandRange(last: Int): Seq[Int] ⇒ Seq[Int] = 1 :: _.foldRight(List(last)) { (i, acc) ⇒ (i - 1) :: i :: acc }
 
-//  def getQuote(book: Book): Seq[Quote] = {
-//    val quotes = book.chapters.foldLeft(Seq.empty[Quote]) {
-//      (acc, chapter) ⇒ {
-//
-//        if (chapter.parts.size == 0) {
-//          acc :+ Quote(book.title, chapter.chapter, null)
-//        } else {
-//          //          val allParts = List(1) ++ chapter.parts ++ List(chapter.verses)
-//          //          val partsToPairs = allParts
-//          val booksFromParts = chapter.parts.foldLeft(1) {
-//            (partPrevious, partCurrent) ⇒ {
-//              val start = partPrevious
-//              val end = partCurrent - 1
-//              acc :+ Quote(book.title, chapter.chapter, Option(Verses(start, end)))
-//              partCurrent
-//            }
-//          }
-//
-//          return acc
-//
-//        }
-//      }
-//    }
-//    return quotes
-//  }
+  def groupByPair: Seq[Int] ⇒ Seq[(Int, Int)] = _.grouped(2).map(p => (p.head, p.last)).toList
 
+  def expandAndGroup(last: Int): Seq[Int] ⇒ Seq[(Int, Int)] = (groupByPair compose expandRange(last)) (_)
+
+  def getQuote(book: Book): Seq[Quote] = {
+    book.chapters.foldLeft(Seq.empty[Quote]) {
+      (acc, chapter) ⇒ {
+        if (chapter.parts.size == 0) {
+          acc :+ Quote(book.title, chapter.chapter, null)
+        } else {
+          acc ++ (expandAndGroup(chapter.verses)(chapter.parts)).map(x ⇒ Quote(book.title, chapter.chapter, Option(Verses(x._1, x._2))))
+        }
+      }
+    }
+  }
 
   val booksEN = ntBooks.sortBy(x ⇒ x.orders("en"))
   val booksRU = ntBooks.sortBy(x ⇒ x.orders("ru"))
@@ -85,6 +71,11 @@ class BooksSpec extends UnitSpec {
 
   it should "have book of James on index 19" in {
     assert(booksEN.indexWhere(x ⇒ x.title == "James") == 19)
+  }
+
+  it should "be divided by 366 daily quotes" in {
+    val sum = booksEN.map(x ⇒ getQuote(x).size).sum
+    assert(sum == 366)
   }
 
 
@@ -147,9 +138,8 @@ class BooksSpec extends UnitSpec {
     assert(mapsPartsEq(expectedPartsMatt, actualPartsMatt))
   }
 
-  it should "be divided by 20 daily quotes" in {
-    val quotes = getQuote(ntMatthew)
-    assert(quotes.size == 20)
+  it should "be divided by 48 daily quotes" in {
+    assert(getQuote(ntMatthew).size == 48)
   }
 
 
@@ -164,6 +154,7 @@ class BooksSpec extends UnitSpec {
     4 → Seq(21),
     5 → Seq(21),
     6 → Seq(30),
+    7 → Seq(14),
     8 → Seq(22),
     9 → Seq(30),
     10 → Seq(32),
@@ -190,6 +181,9 @@ class BooksSpec extends UnitSpec {
     assert(mapsPartsEq(expectedPartsMark, actualPartsMark))
   }
 
+  it should "be divided by 31 daily quotes" in {
+    assert(getQuote(ntMark).size == 31)
+  }
 
   val versesLuke = Seq(80, 52, 38, 44, 39, 49, 50, 56, 62, 42, 54, 59, 35, 35, 32, 31, 37, 43, 48, 47, 38, 71, 56, 53)
   val expectedLuke = mapExpectedVerses(versesLuke)
@@ -237,6 +231,9 @@ class BooksSpec extends UnitSpec {
     assert(mapsPartsEq(expectedPartsLuke, actualPartsLuke))
   }
 
+  it should "be divided by 50 daily quotes" in {
+    assert(getQuote(ntLuke).size == 50)
+  }
 
   val versesJohn = Seq(51, 25, 36, 54, 47, 71, 53, 59, 41, 42, 57, 50, 38, 31, 27, 33, 26, 40, 42, 31, 25)
   val expectedJohn = mapExpectedVerses(versesJohn)
@@ -274,6 +271,10 @@ class BooksSpec extends UnitSpec {
 
   it should "hve a correct set of parts" in {
     assert(mapsPartsEq(expectedPartsJohn, actualPartsJohn))
+  }
+
+  it should "be divided by 36 daily quotes" in {
+    assert(getQuote(ntJohn).size == 36)
   }
 
 
@@ -317,6 +318,10 @@ class BooksSpec extends UnitSpec {
     assert(mapsPartsEq(expectedPartsActs, actualPartsActs))
   }
 
+  it should "be divided by 45 daily quotes" in {
+    assert(getQuote(ntActs).size == 45)
+  }
+
 
   val versesRomans = Seq(32, 29, 31, 25, 21, 23, 25, 39, 33, 21, 36, 21, 14, 23, 33, 27)
   val expectedRomans = mapExpectedVerses(versesRomans)
@@ -344,6 +349,10 @@ class BooksSpec extends UnitSpec {
 
   it should "have a correct set of parts" in {
     assert(mapsPartsEq(expectedPartsRomans, actualPartsRomans))
+  }
+
+  it should "be divided by 20 daily quotes" in {
+    assert(getQuote(ntRomans).size == 20)
   }
 
 
@@ -376,6 +385,10 @@ class BooksSpec extends UnitSpec {
     assert(mapsPartsEq(expectedPartsCorinthians1, actualPartsCorinthians1))
   }
 
+  it should "be divided by 21 daily quotes" in {
+    assert(getQuote(ntCorinthians1).size == 21)
+  }
+
 
   val versesCorinthians2 = Seq(24, 17, 18, 18, 21, 18, 16, 24, 15, 18, 33, 21, 13)
   val expectedCorinthians2 = mapExpectedVerses(versesCorinthians2)
@@ -402,6 +415,9 @@ class BooksSpec extends UnitSpec {
     assert(mapsPartsEq(expectedPartsCorinthians2, actualPartsCorinthians2))
   }
 
+  it should "be divided by 14 daily quotes" in {
+    assert(getQuote(ntCorinthians2).size == 14)
+  }
 
   val versesGalatians = Seq(24, 21, 29, 31, 26, 18)
   val expectedGalatians = mapExpectedVerses(versesGalatians)
@@ -424,6 +440,10 @@ class BooksSpec extends UnitSpec {
 
   it should "have a correct set of parts" in {
     assert(mapsPartsEq(expectedPartsGalatians, actualPartsGalatians))
+  }
+
+  it should "be divided by 6 daily quotes" in {
+    assert(getQuote(ntGalatians).size == 6)
   }
 
 
@@ -452,6 +472,10 @@ class BooksSpec extends UnitSpec {
     assert(mapsPartsEq(expectedPartsEphesians, actualPartsEphesians))
   }
 
+  it should "be divided by 7 daily quotes" in {
+    assert(getQuote(ntEphesians).size == 7)
+  }
+
 
   val versesPhilippians = Seq(30, 30, 21, 23)
   val expectedPhilippians = mapExpectedVerses(versesPhilippians)
@@ -474,6 +498,10 @@ class BooksSpec extends UnitSpec {
 
   it should "have a correct set of parts" in {
     assert(mapsPartsEq(expectedPartsPhilippians, actualPartsPhilippians))
+  }
+
+  it should "be divided by 4 daily quotes" in {
+    assert(getQuote(ntPhilippians).size == 4)
   }
 
 
@@ -500,6 +528,10 @@ class BooksSpec extends UnitSpec {
     assert(mapsPartsEq(expectedPartsColossians, actualPartsColossians))
   }
 
+  it should "be divided by 4 daily quotes" in {
+    assert(getQuote(ntColossians).size == 4)
+  }
+
 
   val versesThessalonians1 = Seq(10, 20, 13, 18, 28)
   val expectedThessalonians1 = mapExpectedVerses(versesThessalonians1)
@@ -521,6 +553,10 @@ class BooksSpec extends UnitSpec {
 
   it should "have a correct set of parts" in {
     assert(mapsPartsEq(expectedPartsThessalonians1, actualPartsThessalonians1))
+  }
+
+  it should "be divided by 5 daily quotes" in {
+    assert(getQuote(ntThessalonians1).size == 5)
   }
 
 
@@ -546,6 +582,10 @@ class BooksSpec extends UnitSpec {
     assert(mapsPartsEq(expectedPartsThessalonians2, actualPartsThessalonians2))
   }
 
+  it should "be divided by 3 daily quotes" in {
+    assert(getQuote(ntThessalonians2).size == 3)
+  }
+
 
   val versesTimothy1 = Seq(20, 15, 16, 16, 25, 21)
   val expectedTimothy1 = mapExpectedVerses(versesTimothy1)
@@ -567,6 +607,10 @@ class BooksSpec extends UnitSpec {
 
   it should "have a correct set of parts" in {
     assert(mapsPartsEq(expectedPartsTimothy1, actualPartsTimothy1))
+  }
+
+  it should "be divided by 6 daily quotes" in {
+    assert(getQuote(ntTimothy1).size == 6)
   }
 
 
@@ -592,6 +636,10 @@ class BooksSpec extends UnitSpec {
     assert(mapsPartsEq(expectedPartsTimothy2, actualPartsTimothy2))
   }
 
+  it should "be divided by 4 daily quotes" in {
+    assert(getQuote(ntTimothy2).size == 4)
+  }
+
 
   val versesTitus = Seq(6, 15, 15)
   val expectedTitus = mapExpectedVerses(versesTitus)
@@ -613,6 +661,10 @@ class BooksSpec extends UnitSpec {
 
   it should "have a correct set of parts" in {
     assert(mapsPartsEq(expectedPartsTitus, actualPartsTitus))
+  }
+
+  it should "be divided by 3 daily quotes" in {
+    assert(getQuote(ntTitus).size == 3)
   }
 
 
@@ -639,12 +691,19 @@ class BooksSpec extends UnitSpec {
     assert(mapsPartsEq(expectedPartsPhilemon, actualPartsPhilemon))
   }
 
+  it should "be divided by 1 daily quotes" in {
+    assert(getQuote(ntPhilemon).size == 1)
+  }
+
 
   val versesHebrews = Seq(14, 18, 19, 16, 14, 20, 28, 13, 28, 39, 40, 29, 25)
   val expectedHebrews = mapExpectedVerses(versesHebrews)
   val actualHebrews = mapActualVerses(ntHebrews)
   val actualPartsHebrews = mapActualParts(ntHebrews)
-  val expectedPartsHebrews = Map[Int, Seq[Int]]().empty
+  val expectedPartsHebrews = Map(
+    10 → Seq(19),
+    11 → Seq(20)
+  )
 
   "Hebrews" should "have 13 chapters" in {
     assert(actualHebrews.size == 13)
@@ -660,6 +719,10 @@ class BooksSpec extends UnitSpec {
 
   it should "have a correct set of parts" in {
     assert(mapsPartsEq(expectedPartsHebrews, actualPartsHebrews))
+  }
+
+  it should "be divided by 15 daily quotes" in {
+    assert(getQuote(ntHebrews).size == 15)
   }
 
 
@@ -685,6 +748,10 @@ class BooksSpec extends UnitSpec {
     assert(mapsPartsEq(expectedPartsJames, actualPartsJames))
   }
 
+  it should "be divided by 5 daily quotes" in {
+    assert(getQuote(ntJames).size == 5)
+  }
+
 
   val versesPeter1 = Seq(25, 25, 22, 19, 14)
   val expectedPeter1 = mapExpectedVerses(versesPeter1)
@@ -706,6 +773,10 @@ class BooksSpec extends UnitSpec {
 
   it should "have a correct set of parts" in {
     assert(mapsPartsEq(expectedPartsPeter1, actualPartsPeter1))
+  }
+
+  it should "be divided by 5 daily quotes" in {
+    assert(getQuote(ntPeter1).size == 5)
   }
 
 
@@ -731,6 +802,11 @@ class BooksSpec extends UnitSpec {
     assert(mapsPartsEq(expectedPartsPeter2, actualPartsPeter2))
   }
 
+  it should "be divided by 3 daily quotes" in {
+    assert(getQuote(ntPeter2).size == 3)
+  }
+
+
   val versesJohn1 = Seq(10, 29, 24, 21, 21)
   val expectedJohn1 = mapExpectedVerses(versesJohn1)
   val actualJohn1 = mapActualVerses(ntJohn1)
@@ -753,6 +829,11 @@ class BooksSpec extends UnitSpec {
     assert(mapsPartsEq(expectedPartsJohn1, actualPartsJohn1))
   }
 
+  it should "be divided by 5 daily quotes" in {
+    assert(getQuote(ntJohn1).size == 5)
+  }
+
+
   val versesJohn2 = Seq(13)
   val expectedJohn2 = mapExpectedVerses(versesJohn2)
   val actualJohn2 = mapActualVerses(ntJohn2)
@@ -773,6 +854,10 @@ class BooksSpec extends UnitSpec {
 
   it should "have a correct set of parts" in {
     assert(mapsPartsEq(expectedPartsJohn2, actualPartsJohn2))
+  }
+
+  it should "be divided by 1 daily quotes" in {
+    assert(getQuote(ntJohn2).size == 1)
   }
 
 
@@ -798,6 +883,10 @@ class BooksSpec extends UnitSpec {
     assert(mapsPartsEq(expectedPartsJohn3, actualPartsJohn3))
   }
 
+  it should "be divided by 1 daily quotes" in {
+    assert(getQuote(ntJohn3).size == 1)
+  }
+
 
   val versesJude = Seq(25)
   val expectedJude = mapExpectedVerses(versesJude)
@@ -821,6 +910,10 @@ class BooksSpec extends UnitSpec {
     assert(mapsPartsEq(expectedPartsJude, actualPartsJude))
   }
 
+  it should "be divided by 1 daily quotes" in {
+    assert(getQuote(ntJude).size == 1)
+  }
+
 
   val versesRevelation = Seq(20, 29, 22, 11, 14, 17, 17, 13, 21, 11, 19, 17, 18, 20, 8, 21, 18, 24, 21, 15, 27, 21)
   val expectedRevelation = mapExpectedVerses(versesRevelation)
@@ -842,6 +935,10 @@ class BooksSpec extends UnitSpec {
 
   it should "have a correct set of parts" in {
     assert(mapsPartsEq(expectedPartsRevelation, actualPartsRevelation))
+  }
+
+  it should "be divided by 22 daily quotes" in {
+    assert(getQuote(ntRevelation).size == 22)
   }
 
 }

@@ -11,7 +11,7 @@ case class Quote
 ) {
 
   override def toString = {
-    s"$title $chapter ${if (verses.isEmpty) "" else s": ${verses.get.start}-${verses.get.end}"}"
+    s"$title $chapter${if (Some(verses).get == null) "" else s":${verses.get.start}-${verses.get.end}"}"
   }
 
 }

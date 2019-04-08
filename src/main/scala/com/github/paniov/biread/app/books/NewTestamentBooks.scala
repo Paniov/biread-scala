@@ -84,7 +84,7 @@ object NewTestamentBooks {
       Chapter(4, 41, Seq(21), ""),
       Chapter(5, 43, Seq(21), ""),
       Chapter(6, 56, Seq(30), ""),
-      Chapter(7, 37, Seq(), ""),
+      Chapter(7, 37, Seq(14), ""),
       Chapter(8, 38, Seq(22), ""),
       Chapter(9, 50, Seq(30), ""),
       Chapter(10, 52, Seq(32), ""),
@@ -383,8 +383,8 @@ object NewTestamentBooks {
       Chapter(7, 28, Seq(), ""),
       Chapter(8, 13, Seq(), ""),
       Chapter(9, 28, Seq(), ""),
-      Chapter(10, 39, Seq(), ""),
-      Chapter(11, 40, Seq(), ""),
+      Chapter(10, 39, Seq(19), ""),
+      Chapter(11, 40, Seq(20), ""),
       Chapter(12, 29, Seq(), ""),
       Chapter(13, 25, Seq(), "")
     ),
@@ -506,8 +506,8 @@ object NewTestamentBooks {
     ntPeter1,
     ntPeter2,
     ntJohn1,
-    ntJohn1,
     ntJohn2,
+    ntJohn3,
     ntJude,
 
     ntRevelation
