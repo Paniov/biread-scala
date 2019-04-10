@@ -41,6 +41,12 @@ class BooksSpec extends UnitSpec {
 
   def expandAndGroup(last: Int): Seq[Int] ⇒ Seq[(Int, Int)] = (groupByPair compose expandRange(last)) (_)
 
+  //TODO: adjust these functions to the proper types
+  def split: List[String] => Int => (List[String], List[String]) = _.splitAt
+  def glueShear: Tuple2[List[String], List[String]] => List[String] = (t) => t._1.init ::: ((t._1.last ++ t._2.head) :: t._2.tail)
+  def joinAt: List[String] => Int => List[String] = { glueShear compose split(_) }
+//  joinAt(List("a", "b", "c", "d"))(2)
+
   def getQuote(book: Book): Seq[Quote] = {
     book.chapters.foldLeft(Seq.empty[Quote]) {
       (acc, chapter) ⇒ {
