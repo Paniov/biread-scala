@@ -2,6 +2,7 @@ package com.github.paniov.biread.test
 
 import com.github.paniov.biread.app.books.NewTestamentBooks._
 import com.github.paniov.biread.app.model.{Book, Quote, Verses}
+import com.github.paniov.biread.app.model.Quote.composeQuotes
 
 import scala.collection.SortedSet
 import scala.language.postfixOps
@@ -47,6 +48,14 @@ class BooksSpec extends UnitSpec {
   def joinAt: List[String] => Int => List[String] = { glueShear compose split(_) }
 //  joinAt(List("a", "b", "c", "d"))(2)
 
+
+  def splitQuotes: List[Quote] => Int => (List[Quote], List[Quote]) = _.splitAt
+
+  def glueShearQuotes: Tuple2[List[Quote], List[Quote]] => List[Quote] = (t) => t._1.init ::: (composeQuotes(t._1.last, t._2.head) :: t._2.tail)
+
+  def joinQuotesAt: List[Quote] => Int => List[Quote] = { glueShearQuotes compose splitQuotes(_) }
+
+
   def getQuote(book: Book): Seq[Quote] = {
     book.chapters.foldLeft(Seq.empty[Quote]) {
       (acc, chapter) ⇒ {
@@ -82,6 +91,10 @@ class BooksSpec extends UnitSpec {
   it should "be divided by 366 daily quotes" in {
     val sum = booksEN.map(x ⇒ getQuote(x).size).sum
     assert(sum == 366)
+  }
+
+  it should "be able to glue two quotes together and return 365 quotes" in {
+    val quotes = booksEN.lift
   }
 
 

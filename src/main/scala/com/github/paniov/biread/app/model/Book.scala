@@ -11,3 +11,9 @@ case class Book
   chapters: Seq[Chapter],
   orders: Map[String, Int]
 )
+
+object Book {
+
+  val empty: Book = Book("", "", "", Seq[Chapter](), Map[String, Int]().empty )
+
+}

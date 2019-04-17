@@ -6,7 +6,7 @@ import io.circe.generic.JsonCodec
 case class Quote
 (
   title: String,
-  chapter: Int,
+  chapter: Int, //TODO change to Seq
   verses: Option[Verses]
 ) {
 
@@ -17,3 +17,13 @@ case class Quote
 }
 
 
+object Quote {
+
+  //TODO Add other cases e.g. when books or chapters are different
+  def composeQuotes(quoteA: Quote, quoteB: Quote): Quote = Quote(
+    if (quoteA.title == quoteB.title) quoteA.title else s"${quoteA.title} - ${quoteB.title}",
+    if (quoteA.chapter == quoteB.chapter) quoteA.chapter else quoteB.chapter,
+    Some(Verses(quoteA.verses.get.start, quoteB.verses.get.end))
+  )
+
+}
