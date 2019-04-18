@@ -1,75 +1,23 @@
 package com.github.paniov.biread.test
 
-import com.github.paniov.biread.app.books.NewTestamentBooks._
-import com.github.paniov.biread.app.model.{Book, Quote, Verses}
-import com.github.paniov.biread.app.model.Quote.composeQuotes
+import java.time._
 
-import scala.collection.SortedSet
 import scala.language.postfixOps
+
+import com.github.paniov.biread.app.utils.Utils._
+import com.github.paniov.biread.app.books.NewTestamentBooks._
+import com.github.paniov.biread.app.model.{Book}
+
 
 class BooksSpec extends UnitSpec {
 
-  type BookMap = Map[Int, Int]
-  type TupleInt = (Int, Int)
+  val booksEN: Seq[Book] = ntBooks.sortBy(x ⇒ x.orders("en"))
+  val booksRU: Seq[Book] = ntBooks.sortBy(x ⇒ x.orders("ru"))
+  val quoteStringsLeapYear: Map[Int, String] = getLeapYearQuoteStringMap(booksEN)
+  val quoteStringsNormalYear: Map[Int, String] = getNormalYearQuoteStringMap(booksEN)
+  val year2019 = Year.of(2019)
+  val year2020 = Year.of(2020)
 
-  def addOne: Int ⇒ Int = (1 + _)
-
-  def increaseIndex: ((Int, Int)) ⇒ (Int, Int) = x ⇒ (x._1, addOne(x._2))
-
-  def swapTuple: ((Int, Int)) ⇒ (Int, Int) = x ⇒ x.swap
-
-  def swapTupleSeq: ((Seq[Int], Int)) ⇒ (Int, Seq[Int]) = x ⇒ x.swap
-
-  def mapExpectedVerses: Seq[Int] ⇒ Map[Int, Int] = _.view.zipWithIndex.map(increaseIndex andThen swapTuple).toMap
-
-  def mapActualVerses: Book ⇒ Map[Int, Int] = _.chapters.map(x ⇒ (x.chapter → x.verses)).toMap
-
-  def mapActualParts: Book ⇒ Map[Int, Seq[Int]] = _.chapters.map(x ⇒ (x.chapter → x.parts)).toMap
-
-  def mapsEq(x: BookMap, y: BookMap): Boolean = (x.toSet diff y.toSet).toMap.isEmpty
-
-  def rejectEmpty(x: Map[Int, Seq[Int]]): Map[Int, Seq[Int]] = x.filter(_._2.nonEmpty)
-
-  def mapsDiff(x: Map[Int, Seq[Int]], y: Map[Int, Seq[Int]]): Boolean = (rejectEmpty(x).toSet diff rejectEmpty(y).toSet).toMap.isEmpty
-
-  def mapsPartsEq(x: Map[Int, Seq[Int]], y: Map[Int, Seq[Int]]): Boolean = mapsDiff(x, y) && mapsDiff(y, x)
-
-  def mapKeysToSortedList: BookMap ⇒ List[Int] = SortedSet.empty[Int] ++ _.keys toList
-
-  def expandRange(last: Int): Seq[Int] ⇒ Seq[Int] = 1 :: _.foldRight(List(last)) { (i, acc) ⇒ (i - 1) :: i :: acc }
-
-  def groupByPair: Seq[Int] ⇒ Seq[(Int, Int)] = _.grouped(2).map(p => (p.head, p.last)).toList
-
-  def expandAndGroup(last: Int): Seq[Int] ⇒ Seq[(Int, Int)] = (groupByPair compose expandRange(last)) (_)
-
-  //TODO: adjust these functions to the proper types
-  def split: List[String] => Int => (List[String], List[String]) = _.splitAt
-  def glueShear: Tuple2[List[String], List[String]] => List[String] = (t) => t._1.init ::: ((t._1.last ++ t._2.head) :: t._2.tail)
-  def joinAt: List[String] => Int => List[String] = { glueShear compose split(_) }
-//  joinAt(List("a", "b", "c", "d"))(2)
-
-
-  def splitQuotes: List[Quote] => Int => (List[Quote], List[Quote]) = _.splitAt
-
-  def glueShearQuotes: Tuple2[List[Quote], List[Quote]] => List[Quote] = (t) => t._1.init ::: (composeQuotes(t._1.last, t._2.head) :: t._2.tail)
-
-  def joinQuotesAt: List[Quote] => Int => List[Quote] = { glueShearQuotes compose splitQuotes(_) }
-
-
-  def getQuote(book: Book): Seq[Quote] = {
-    book.chapters.foldLeft(Seq.empty[Quote]) {
-      (acc, chapter) ⇒ {
-        if (chapter.parts.size == 0) {
-          acc :+ Quote(book.title, chapter.chapter, null)
-        } else {
-          acc ++ (expandAndGroup(chapter.verses)(chapter.parts)).map(x ⇒ Quote(book.title, chapter.chapter, Option(Verses(x._1, x._2))))
-        }
-      }
-    }
-  }
-
-  val booksEN = ntBooks.sortBy(x ⇒ x.orders("en"))
-  val booksRU = ntBooks.sortBy(x ⇒ x.orders("ru"))
 
   "Books of EN and RU versions" should "differ in its order" in {
     assert(booksEN !== booksRU)
@@ -86,15 +34,6 @@ class BooksSpec extends UnitSpec {
 
   it should "have book of James on index 19" in {
     assert(booksEN.indexWhere(x ⇒ x.title == "James") == 19)
-  }
-
-  it should "be divided by 366 daily quotes" in {
-    val sum = booksEN.map(x ⇒ getQuote(x).size).sum
-    assert(sum == 366)
-  }
-
-  it should "be able to glue two quotes together and return 365 quotes" in {
-    val quotes = booksEN.lift
   }
 
 
@@ -114,6 +53,64 @@ class BooksSpec extends UnitSpec {
   it should "have a consecutive ascending order of chapters from 1 to 28" in {
     assert(mapKeysToSortedList(actualMatt) === (1 to 28 toList))
   }
+
+
+  //Leap Year: 366 days
+  "Quotes of Leap Year" should "be of size 366" in {
+    assert(quoteStringsLeapYear.size == 366)
+  }
+
+  //Day 60, February 29 -> Mark 7:1-13
+  it should "have a correct quote for the day 60 of the leap year" in {
+    assert(quoteStringsLeapYear(60) == "Mark 7:1-13")
+  }
+
+
+  "Leap Year" should "be the year 2020" in {
+    assert(year2020.isLeap)
+  }
+
+  it should "return February 29 on 60th day" in {
+    val day60 = year2020.atDay(60)
+    val feb29 = MonthDay.of(2, 29)
+    assert(day60.getMonth.getValue == feb29.getMonth.getValue)
+    assert(day60.getDayOfMonth == feb29.getDayOfMonth)
+  }
+
+
+  "Normal Year" should "be the year 2019" in {
+    assert(year2019.isLeap == false)
+
+  }
+
+  //  it should "be current year" in {
+  //    val year = LocalDate.now()
+  //    assert(year.getYear == 2019)
+  //    assert(year.isLeapYear == false)
+  //  }
+
+  it should "return March 1 on 60th day" in {
+    val day60 = year2019.atDay(60)
+    val mar1 = MonthDay.of(3, 1)
+    assert(day60.getMonth.getValue == mar1.getMonth.getValue)
+    assert(day60.getDayOfMonth == mar1.getDayOfMonth)
+  }
+
+  //Normal Year: 365 days
+  "Quotes of Normal Year" should "be of size 365" in {
+    assert(quoteStringsNormalYear.size == 365)
+  }
+
+  //Day 60, March 1 -> Mark 7:1-37
+  it should "have a correct quote on index 60" in {
+    assert(quoteStringsNormalYear(60) == "Mark 7:1-37")
+  }
+
+  "Current date" should "be formatted to Month Day, Year format" in {
+    val currentDate: String = getDateString(getCurrentDate)
+    assert(currentDate === "Wednesday, April 17, 2019")
+  }
+
 
   val versesMatt = Seq(25, 23, 17, 25, 48, 34, 29, 34, 38, 42, 30, 50, 58, 36, 39, 28, 27, 35, 30, 34, 46, 46, 39, 51, 46, 75, 66, 20)
   val actualMatt = mapActualVerses(ntMatthew)
@@ -961,4 +958,3 @@ class BooksSpec extends UnitSpec {
   }
 
 }
-
