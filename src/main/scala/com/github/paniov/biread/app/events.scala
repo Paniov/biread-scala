@@ -1,5 +1,7 @@
 package com.github.paniov.biread.app
 
+import java.time.LocalDate
+
 //import com.github.nechaevv.isomorphic.example.model.Hero
 
 //case class HeroesLoadEvent(heroes: Seq[Hero])
@@ -23,6 +25,18 @@ case object NavigateToContacts
 //case object NavigateToHeroes
 
 case object NavigateBack
+
+case object CurrentDate
+
+case object PrevDate
+
+case object NextDate
+
+case class PrevDateEvent(date: LocalDate)
+
+case class CurrentDateEvent(date: LocalDate)
+
+case class NextDateEvent(date: LocalDate)
 
 //case class SearchHeroes(search: String)
 //

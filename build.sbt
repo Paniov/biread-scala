@@ -17,6 +17,11 @@ val circeVersion      = "0.11.1"
 val monocleVersion    = "1.5.1-cats"
 val isomorphicVersion = "0.1-SNAPSHOT"
 val json4sVersion     = "3.6.5"
+val scalaJavaTime     = "2.0.0-M13"
+val tzdb2             = "2.0.0-RC1_2018f"
+
+//"io.github.cquiroz" %% "scala-java-time" % scalaJavaTime (for Scala)
+//"io.github.cquiroz" %%% "scala-java-time" % scalaJavaTime (for Scala.js, Scala.js plugin required)
 
 libraryDependencies ++= Seq(
   "com.github.nechaevv.isomorphic" %%% "isomorphic-core" % isomorphicVersion,
@@ -24,10 +29,11 @@ libraryDependencies ++= Seq(
   "com.github.julien-truffaut" %%%  "monocle-macro" % monocleVersion,
   "com.github.julien-truffaut" %%%  "monocle-law"   % monocleVersion % "test",
   "io.circe" %%% "circe-generic" % circeVersion,
+  "io.github.cquiroz" %%% "scala-java-time" % scalaJavaTime,
+  "io.github.cquiroz" %%% "scala-java-time-tzdb" % tzdb2,
   "org.json4s" %% "json4s-jackson" % json4sVersion,
   "org.scalactic" %% "scalactic" % "3.0.5",
   "org.scalatest" %% "scalatest" % "3.0.5" % "test"
-
 )
 
 scalacOptions ++= Seq("-P:scalajs:sjsDefinedByDefault", "-feature", "-deprecation")

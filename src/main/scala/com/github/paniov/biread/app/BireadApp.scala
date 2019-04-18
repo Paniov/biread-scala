@@ -1,11 +1,13 @@
 package com.github.paniov.biread.app
 
 import com.github.nechaevv.isomorphic.{AutonomousCustomElement, ActionStream, combineEffects, combineReducers}
-import com.github.paniov.biread.app.components.AppComponent
 import com.github.paniov.biread.app.model.{BireadAppState}
 import com.github.nechaevv.isomorphic.router.{Router, RouterSupport}
 import com.github.nechaevv.isomorphic.webcomponent.{DomReconcilerRender, StatefulHostComponent, StatefulHostElementDelegate}
 import org.scalajs.dom.raw.HTMLElement
+
+import com.github.paniov.biread.app.components.AppComponent
+import com.github.paniov.biread.app.utils.Utils._
 
 object BireadApp extends StatefulHostComponent with AutonomousCustomElement with DomReconcilerRender {
 
@@ -17,6 +19,7 @@ object BireadApp extends StatefulHostComponent with AutonomousCustomElement with
 
   override def initialState(properties: Iterable[(String, String)]): State = BireadAppState(
     route = Router.currentRoute,
+    currentDate = getCurrentDate
     //    heroes = Nil,
     //    detail = None,
     //    search = HeroSearchState("", Nil),

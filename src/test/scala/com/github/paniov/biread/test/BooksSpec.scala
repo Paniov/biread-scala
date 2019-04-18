@@ -90,7 +90,7 @@ class BooksSpec extends UnitSpec {
   //  }
 
   it should "return March 1 on 60th day" in {
-    val day60 = year2019.atDay(60)
+    val day60: LocalDate = year2019.atDay(60)
     val mar1 = MonthDay.of(3, 1)
     assert(day60.getMonth.getValue == mar1.getMonth.getValue)
     assert(day60.getDayOfMonth == mar1.getDayOfMonth)

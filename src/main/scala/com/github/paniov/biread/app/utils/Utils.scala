@@ -3,8 +3,12 @@ package com.github.paniov.biread.app.utils
 import java.time.LocalDate
 import java.time.format.{DateTimeFormatter, FormatStyle}
 
+import scala.language.postfixOps
+
+import com.github.paniov.biread.app.books.NewTestamentBooks.ntBooks
 import com.github.paniov.biread.app.model.Quote.composeQuotes
 import com.github.paniov.biread.app.model.{Book, Quote, Verses}
+
 
 import scala.collection.SortedSet
 
@@ -96,4 +100,15 @@ object Utils {
   val DATE_M_D_Y = FormatStyle.LONG
 
   def getDateString: LocalDate ⇒ String = _.format(DateTimeFormatter.ofLocalizedDate(DATE_W_M_D_Y))
+
+  lazy val booksEN: Seq[Book] = ntBooks.sortBy(x ⇒ x.orders("en"))
+  lazy val booksRU: Seq[Book] = ntBooks.sortBy(x ⇒ x.orders("ru"))
+  lazy val quoteStringsLeapYear: Map[Int, String] = getLeapYearQuoteStringMap(booksEN)
+  lazy val quoteStringsNormalYear: Map[Int, String] = getNormalYearQuoteStringMap(booksEN)
+
+  //TODO pass quotes as implicits
+  def getQuoteString(date: LocalDate): String = {
+    if (date.isLeapYear) quoteStringsLeapYear(date.getDayOfYear)
+    else quoteStringsNormalYear(date.getDayOfYear)
+  }
 }

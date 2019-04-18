@@ -6,6 +6,8 @@ import com.github.paniov.biread.app.model.BireadAppState
 import com.github.nechaevv.isomorphic.router.{Route, RouteChangeEvent, Router}
 import com.github.nechaevv.isomorphic.webcomponent.ComponentConnectedEvent
 
+import com.github.paniov.biread.app.utils.Utils._
+
 import AppRoutes._
 
 import scala.language.implicitConversions
@@ -40,6 +42,10 @@ object AppEffects {
 
     //    case NavigateToHeroDetail(heroId) ⇒ _ ⇒ Router.navigate(Route(s"/detail/$heroId"))
     case NavigateBack ⇒ _ ⇒ Router.back()
+    case PrevDate ⇒ s ⇒ fs2.Stream(PrevDateEvent(s.currentDate))
+    case CurrentDate ⇒ s ⇒ fs2.Stream(CurrentDateEvent(s.currentDate))
+    case NextDate ⇒ s ⇒ fs2.Stream(NextDateEvent(s.currentDate))
+
     //    case SearchHeroes(search) ⇒ s ⇒ fs2.Stream(if (search.length > 2) {
     //      fs2.Stream.eval(HeroesRepository.searchHeroes(search)) ++
     //        fs2.Stream(AddMessage(s"""found heroes matching "$search""""))
