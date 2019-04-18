@@ -14,6 +14,6 @@ case class Book
 
 object Book {
 
-  val empty: Book = Book("", "", "", Seq[Chapter](), Map[String, Int]().empty )
+  val empty: Book = Book("", "", "", Seq[Chapter](), Map[String, Int]().empty)
 
 }
