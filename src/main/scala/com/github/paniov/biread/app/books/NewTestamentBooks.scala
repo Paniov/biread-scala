@@ -1,6 +1,5 @@
 package com.github.paniov.biread.app.books
 
-//import com.github.paniov.biread.app._
 import com.github.paniov.biread.app.model.{Book, Chapter}
 
 object NewTestamentBooks {

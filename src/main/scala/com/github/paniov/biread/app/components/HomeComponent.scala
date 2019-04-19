@@ -4,14 +4,14 @@ import com.github.nechaevv.isomorphic.vdom._
 import com.github.nechaevv.isomorphic.vdom.browser._
 import com.github.nechaevv.isomorphic.vdom.tags._
 import com.github.paniov.biread.app.model.BireadAppState
-import com.github.paniov.biread.app.{CurrentDate, NavigateBack, NextDate, PrevDate, bibleJSON}
+import com.github.paniov.biread.app.{CurrentDate, NavigateBack, NextDate, PrevDate}
 import com.github.paniov.biread.app.utils.Utils._
 
 object HomeComponent extends Component[BireadAppState, ElementVNode] {
 
   override def apply(state: BireadAppState): ElementVNode = {
     div(classes += "home d-flex flex-column",
-      div(classes += "d-flex justify-content-center page-title", h4("Read The New Testament In a Year")),
+      div(classes += "d-flex justify-content-center page-title", "The New Testament in a year"),
       div(classes += "d-flex justify-content-center quote-string", h2(getQuoteString(state.currentDate))),
 
       div(classes += "d-flex flex-column date-container",
@@ -28,7 +28,6 @@ object HomeComponent extends Component[BireadAppState, ElementVNode] {
 //      )
     )
   }
-
 
   val prevDateEventHandler: EventHandler = e ⇒ fs2.Stream(PrevDate)
   val currentDateEventHandler: EventHandler = e ⇒ fs2.Stream(CurrentDate)

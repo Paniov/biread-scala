@@ -5,19 +5,17 @@ import com.github.paniov.biread.app.NavigateBack
 import com.github.nechaevv.isomorphic.vdom._
 import com.github.nechaevv.isomorphic.vdom.browser._
 import com.github.nechaevv.isomorphic.vdom.tags._
-import com.github.paniov.biread.app.utils.Utils.{getDateString, getQuoteString}
 
 object HowtoComponent extends Component[BireadAppState, ElementVNode] {
 
   override def apply(state: BireadAppState): ElementVNode = {
     div(classes += "howto",
-      div(classes += "page-title", h4("Learn To Read the Bible Daily")),
+      div(classes += "page-title", "Learn to read the Bible daily"),
       div(classes += "",
         p(classes += "slogan cite", "Watch your life and doctrine closely. " +
           "Persevere in them, because if you do, you will save both yourself and your hearers. ",
           span(classes += "cite-ref", "1 Timothy 4:16")
         )
-//        button(DOMEventTypes.Click → backEventHandler, "go back")
       ),
 
       div(classes += "d-flex justify-content-center card app-card ",
@@ -96,14 +94,10 @@ object HowtoComponent extends Component[BireadAppState, ElementVNode] {
           li(classes += "list-group-item", "Share it in a small group at church or a conference. "),
         )
       )
+
+      //button(DOMEventTypes.Click → backEventHandler, "go back")
+
     )
-
-//    1. Read the small portion of the Bible each day.
-//    2. Think well of how it is aplicable to YOUR life today and now.
-//    3. Discipline your mind in the way that you wiil be able to express clearly your application in one Twitt.
-//    4. Pray to Jesus with what you've learned.
-//    5. Don't give up
-
 
   }
 

@@ -1,18 +1,17 @@
 package com.github.paniov.biread.app.components
 
 import com.github.paniov.biread.app.model.BireadAppState
-import com.github.paniov.biread.app.{NavigateBack, NavigateToHowto}
+import com.github.paniov.biread.app.{NavigateBack}
 import com.github.nechaevv.isomorphic.vdom.browser._
 import com.github.nechaevv.isomorphic.vdom.tags.{a, _}
 import com.github.nechaevv.isomorphic.vdom._
-import com.github.paniov.biread.app.components.AppComponent.{READ, getStyleClass}
 
 object ContactsComponent extends Component[BireadAppState, ElementVNode] {
 
   override def apply(state: BireadAppState): ElementVNode = {
 
     div(classes += "info",
-      div(classes += "page-title", h4("The Info of the Resource and the Author")),
+      div(classes += "page-title", "About this resource and me"),
 
       div(classes += "d-flex justify-content-center card app-card ",
         div(classes += "card-body",
@@ -44,7 +43,7 @@ object ContactsComponent extends Component[BireadAppState, ElementVNode] {
           p("I did this webapp because its efficiency is bigger than any other printed alternative and... " +
             "I need it for my daily use. ;)"
           )
-        ),
+        )
       )
 
     )

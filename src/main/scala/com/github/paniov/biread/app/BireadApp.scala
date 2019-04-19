@@ -20,11 +20,6 @@ object BireadApp extends StatefulHostComponent with AutonomousCustomElement with
   override def initialState(properties: Iterable[(String, String)]): State = BireadAppState(
     route = Router.currentRoute,
     currentDate = getCurrentDate
-    //    heroes = Nil,
-    //    detail = None,
-    //    search = HeroSearchState("", Nil),
-    //    newHeroName = "",
-    //    messages = Nil
   )
 
   override def customElementDelegate(componentHost: HTMLElement): StatefulHostElementDelegate = {
