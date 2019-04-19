@@ -1,8 +1,59 @@
 h1 {
-    color: red;
+  color: red;
+}
+
+app-biread {
+  position: absolute;
+  background-color: lightsteelblue;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  display: flex;
 }
 
 app-biread nav a {
-    margin-right: 10px;
-    font-size: 1.3em;
+  margin-right: 10px;
+  font-size: 1.3em;
+  //color: greenyellow;
+}
+
+app-biread nav a.active {
+  color: greenyellow !important;
+}
+
+.home {
+  height: 100%;
+  justify-content: space-between;
+}
+
+.app-title {
+  margin-top: 20px;
+}
+
+.btn-xs {
+  height: 28px;
+  padding: 2px 5px !important;
+  font-size: 12px !important;
+  line-height: 1.1 !important;
+  border-radius: 3px !important;
+}
+
+.btn-xs.read-today {
+  margin: 0 5px;
+}
+
+.btn-xs.square {
+  width: 28px;
+}
+
+.quote-string {
+  font-size: 14px;
+}
+
+.date-container {
+  margin-bottom: 30px;
+}
+
+.slogan {
+  font-size: 12px;
 }

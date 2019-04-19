@@ -19,7 +19,7 @@ object AppEffects {
     case ComponentConnectedEvent ⇒ s ⇒ {
       (
         if (s.route.path == "/")
-          Router.navigate(Route("/home"))
+          Router.navigate(Route("/read"))
         else
           Router.navigate(Route(s.route.path))
         )
@@ -36,9 +36,9 @@ object AppEffects {
     //    case RouteChangeEvent(Route(detailRoute(heroIdStr), _, _)) ⇒ s ⇒ HeroesRepository.getHero(heroIdStr.toInt)
     //      .map(HeroDetailLoadEvent)
 
-    case NavigateToHome ⇒ _ ⇒ Router.navigate(Route("/home"))
-    case NavigateToHowto ⇒ _ ⇒ Router.navigate(Route("/howto"))
-    case NavigateToContacts ⇒ _ ⇒ Router.navigate(Route("/contacts"))
+    case NavigateToHome ⇒ _ ⇒ Router.navigate(Route("/read"))
+    case NavigateToHowto ⇒ _ ⇒ Router.navigate(Route("/learn"))
+    case NavigateToContacts ⇒ _ ⇒ Router.navigate(Route("/info"))
 
     //    case NavigateToHeroDetail(heroId) ⇒ _ ⇒ Router.navigate(Route(s"/detail/$heroId"))
     case NavigateBack ⇒ _ ⇒ Router.back()

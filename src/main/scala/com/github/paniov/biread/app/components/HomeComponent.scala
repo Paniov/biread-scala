@@ -9,22 +9,26 @@ import com.github.paniov.biread.app.utils.Utils._
 
 object HomeComponent extends Component[BireadAppState, ElementVNode] {
 
-  override def apply(state: BireadAppState): ElementVNode = div(classes += "home",
-    h3("BiRead app"),
-    div(classes += "content",
-      p("It is a Home page of BiRead app"),
-      p(getDateString(state.currentDate)),
-      p(getQuoteString(state.currentDate))
-    ),
+  override def apply(state: BireadAppState): ElementVNode = {
+    div(classes += "home d-flex flex-column",
+      div(classes += "d-flex justify-content-center app-title", p("The New Testament in a Year")),
+      div(classes += "d-flex justify-content-center quote-string", h2(getQuoteString(state.currentDate))),
 
-    div(
-      button(DOMEventTypes.Click → prevDateEventHandler, "-"),
-      button(DOMEventTypes.Click → currentDateEventHandler, "Reading today"),
-      button(DOMEventTypes.Click → nextDateEventHandler, "+"),
-    ),
+      div(classes += "d-flex flex-column date-container",
+        div(classes += "d-flex justify-content-center", p(getDateString(state.currentDate))),
+        div(classes += "d-flex justify-content-center ",
+          button(classes += "btn btn-secondary btn-xs square", DOMEventTypes.Click → prevDateEventHandler, "-"),
+          button(classes += "btn btn-secondary btn-xs read-today", DOMEventTypes.Click → currentDateEventHandler, "Reading today"),
+          button(classes += "btn btn-secondary btn-xs square", DOMEventTypes.Click → nextDateEventHandler, "+"),
+        )
+      )
 
-    button(DOMEventTypes.Click → backEventHandler, "go back")
-  )
+//      div(classes += "d-block",
+//        button(DOMEventTypes.Click → backEventHandler, "go back")
+//      )
+    )
+  }
+
 
   val prevDateEventHandler: EventHandler = e ⇒ fs2.Stream(PrevDate)
   val currentDateEventHandler: EventHandler = e ⇒ fs2.Stream(CurrentDate)

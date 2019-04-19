@@ -10,11 +10,28 @@ import com.github.nechaevv.isomorphic.vdom.tags._
 import AppRoutes._
 
 object AppComponent extends Component[BireadAppState, FragmentVNode] {
+
+  val READ = "read"
+  val LEARN = "learn"
+  val INFO = "info"
+
+  def routePred(r:Route): String = r match {
+    case Route(homeRoute(_*), _, _) ⇒ READ
+    case Route(howtoRoute(_*), _, _) ⇒ LEARN
+    case Route(contactsRoute(_*), _, _) ⇒ INFO
+    case _ ⇒ ""
+  }
+
+  def classPred(a: String)(b: String): String = if (a == b) "active" else ""
+
+  def getStyleClass(s: String)(r:Route): String = (classPred(s)_ compose routePred)(r)
+
   override def apply(state: BireadAppState): FragmentVNode = fragment(
-    nav(
-      a('href := "#", DOMEventTypes.Click → goHomeEventHandler, "Home"),
-      a('href := "#", DOMEventTypes.Click → goHowtoEventHandler, "How To"),
-      a('href := "#", DOMEventTypes.Click → goContactsEventHandler, "Contacts"),
+
+    nav(classes += "d-flex justify-content-center",
+      a(classes += getStyleClass(READ)(state.route), 'href := "#", DOMEventTypes.Click → goHomeEventHandler, "Read"),
+      a(classes += getStyleClass(LEARN)(state.route), 'href := "#", DOMEventTypes.Click → goHowtoEventHandler, "Learn"),
+      a(classes += getStyleClass(INFO)(state.route), 'href := "#", DOMEventTypes.Click → goContactsEventHandler, "Info"),
     ),
     state.route match {
       case Route(homeRoute(_*), _, _) ⇒ Some(HomeComponent << state)
