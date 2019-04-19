@@ -11,7 +11,7 @@ object ContactsComponent extends Component[BireadAppState, ElementVNode] {
   override def apply(state: BireadAppState): ElementVNode = {
 
     div(classes += "info",
-      div(classes += "page-title", "About this resource and me"),
+      div(classes += "page-title", "About this resource"),
 
       div(classes += "d-flex justify-content-center card app-card ",
         div(classes += "card-body",
