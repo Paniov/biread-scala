@@ -12,11 +12,11 @@ object ContactsComponent extends Component[BireadAppState, ElementVNode] {
   override def apply(state: BireadAppState): ElementVNode = {
 
     div(classes += "info",
-      div(classes += "page-title", p("The Info of the Resource and the Author")),
+      div(classes += "page-title", h4("The Info of the Resource and the Author")),
 
       div(classes += "d-flex justify-content-center card app-card ",
         div(classes += "card-body",
-          h4(classes += "card-title", "About the resource"),
+          h4(classes += "card-title", "About this resource"),
           p(classes += "card-text",
             a('href := "https://github.com/Paniov/biread-scala", 'target := "_blank", "This webapp "),
             "is made on Scala with ",
@@ -24,7 +24,7 @@ object ContactsComponent extends Component[BireadAppState, ElementVNode] {
           ),
           p(classes += "card-text", "Initially I was planning to implement the app in Haskell, PureScript or Elm as my " +
             "small functional exercise, " +
-            "but I couldn't resist the temptation to give it a shot to a new Scala Webapp Framework made by my co-worker :).")
+            "but I couldn't resist the temptation to give it a shot with a new Scala Webapp Framework made by my co-worker.")
         ),
       ),
 
@@ -35,14 +35,14 @@ object ContactsComponent extends Component[BireadAppState, ElementVNode] {
             a('href := "https://www.linkedin.com/in/paniov/", 'target := "_blank", "Andriy. "),
             "I did this app in my spare time and I did it for two reasons: "),
 
-          p("I want to help Christians to develop the habit of daily reading of the Bible. " +
-              "25 years ago I was taught how to do it by ",
+          p("I want to help Christians to develop the habit of daily Bible reading. " +
+              "I was taught how to do it by ",
 
             a('href := "http://www.wol.org/", 'target := "_blank", "Word of Life"),
-            " and now I am happy to do the same for others. "
+            " 25 years ago and now I am happy to do the same for others. "
           ),
           p("I did this webapp because its efficiency is bigger than any other printed alternative and... " +
-            "I need it for my daily use ;)."
+            "I need it for my daily use. ;)"
           )
         ),
       )

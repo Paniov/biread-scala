@@ -41,6 +41,7 @@ module.exports = {
   ],
   resolve: {
     alias: {
+//      "target": path.resolve(__dirname, 'src', 'main', 'target'),
       "target": path.resolve(__dirname, 'target'),
       "src": path.resolve(__dirname, 'src')
     }

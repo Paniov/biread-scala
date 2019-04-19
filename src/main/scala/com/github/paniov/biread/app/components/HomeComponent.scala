@@ -11,7 +11,7 @@ object HomeComponent extends Component[BireadAppState, ElementVNode] {
 
   override def apply(state: BireadAppState): ElementVNode = {
     div(classes += "home d-flex flex-column",
-      div(classes += "d-flex justify-content-center page-title", p("Read The New Testament In a Year")),
+      div(classes += "d-flex justify-content-center page-title", h4("Read The New Testament In a Year")),
       div(classes += "d-flex justify-content-center quote-string", h2(getQuoteString(state.currentDate))),
 
       div(classes += "d-flex flex-column date-container",
