@@ -8,7 +8,6 @@ import com.github.paniov.biread.app.utils.Utils._
 import com.github.paniov.biread.app.books.NewTestamentBooks._
 import com.github.paniov.biread.app.model.{Book}
 
-
 class BooksSpec extends UnitSpec {
 
   val booksEN: Seq[Book] = ntBooks.sortBy(x ⇒ x.orders("en"))
